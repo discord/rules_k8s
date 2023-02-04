@@ -24,7 +24,7 @@ function guess_runfiles() {
 function exe() {
     echo "\$ ${@/eval/}"
     EXIT_CODE=0
-    "$@" || EXIT_CODE=$?
+    KUBECTL_EXTERNAL_DIFF="diff -N -u --color=always" "$@" || EXIT_CODE=$?
     # kubectl diff exits with 1 if diffs were found. If multiple files
     # are being diffed, the action will exit early without printing
     # remaining files' diffs unless this code is handled.

@@ -117,12 +117,12 @@ def _impl(ctx):
     substitutions_file = ctx.actions.declare_file(ctx.label.name + ".substitutions.json")
     ctx.actions.write(
         output = substitutions_file,
-        content = struct(
-            substitutions = {
+        content = json.encode({
+            "substitutions": {
                 key: ctx.expand_make_variables(key, value, {})
                 for (key, value) in ctx.attr.substitutions.items()
             },
-        ).to_json(),
+        }),
     )
     all_inputs += [substitutions_file]
 

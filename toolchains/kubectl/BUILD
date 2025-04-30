@@ -43,6 +43,16 @@ toolchain(
 )
 
 toolchain(
+    name = "kubectl_linux_aarch64_toolchain",
+    target_compatible_with = [
+        "@platforms//os:linux",
+        "@platforms//cpu:aarch64",
+    ],
+    toolchain = "@k8s_config//:toolchain",
+    toolchain_type = ":toolchain_type",
+)
+
+toolchain(
     name = "kubectl_linux_s390x_toolchain",
     target_compatible_with = [
         "@platforms//os:linux",
